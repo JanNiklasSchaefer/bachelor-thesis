@@ -24,7 +24,7 @@ All data relevant to each agent has a distinct sub folder in the folder: [benchm
 
 ---
 
-## Letting the agents play a single level
+## Playing a single level with an agent
 
 Run the file [PlayLevel.java](src/PlayLevel.java) to let this thesis MCTS agent run on the
 original [first Mario level](levels/original/lvl-1.txt).
