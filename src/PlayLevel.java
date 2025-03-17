@@ -40,7 +40,7 @@ public class PlayLevel {
 
     public static void main(String[] args) {
         MarioGame game = new MarioGame();
-        // The following code line was modified by: Jan Niklas Schäfer
+        // The following line of code was modified by: Jan Niklas Schäfer
         printResults(game.runGame(new agents.janMonteMario.Agent(), getLevel("./levels/original/lvl-1.txt"), 45, 0, true, true));
     }
 }
