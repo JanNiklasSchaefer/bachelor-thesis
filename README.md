@@ -125,18 +125,20 @@ both in the same way to guarantee the same metrics for both level sets.
 
 ## Implementing an Agent
 
-Implementing an agent in this framework is slightly different from the original Mario-Ai-Framework.
+Implementing an agent in this framework is slightly different from the original Mario Ai framework.
 
-The agent has an additional variable the `drawCoordinates` Array. Each entry consists of this array should consist of 4 values:
+The agent has an additional variable, the `drawCoordinates` array. It can be optionally filled, and each entry of this
+array must consist of the following 4 values
+
 - **x1** x-coordinate of old game state as float
 - **y1** y-coordinate of old game state as float
 - **x2** x-coordinate of new game state as float
 - **y2** y-coordinate of new game state as float
 
-When advancing the forward model of the agent during a search, the old and new x and y position can be saved in this array. At 
-the end of this search this array will be read out by the engine, then it draws a green line between each coordinate pair. 
-This allows drawing of explored paths in the previous frame and serves as a debugging tool while employing an agent.
-
+When the agent's forward model is advanced during a search, the old and new x and y positions can be stored in this
+array. At the end of the search, this array is read by the engine and a green line is drawn between each pair of
+coordinates.
+This allows you to draw explored paths in the previous frame, and serves as a debugging tool when using an agent.
 
 ---
 
