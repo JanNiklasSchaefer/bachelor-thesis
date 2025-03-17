@@ -11,9 +11,9 @@ import engine.helper.MarioActions;
 import java.util.ArrayList;
 
 public class Vertex {
-    int holeDetectionDepths = 0;            // Set Hole Detection Depths, set to 0 showed best results
-    boolean aboveHoleActivated = true;      // toggle hole detection for RBA
 
+    boolean holeDetectionActivated = true;      // toggle hole detection for RBA
+    int holeDetectionDepths = 0;            // Set Hole Detection Depths, set to 0 showed best results
     MarioForwardModel model;                // forward model to simulate game states on
     boolean[][] possibleActions;            // array of possible actions
     ArrayList<Vertex> children;             // array of children
@@ -190,7 +190,7 @@ public class Vertex {
         float newYPos = this.model.getMarioFloatPos()[1];
         drawCoordinates.add(new Float[]{oldXPos, oldYPos, newXPos, newYPos});
 
-        if (aboveHoleActivated) {
+        if (holeDetectionActivated) {
             if (this.holeDetection(holeDetectionDepths)) {
                 this.aboveHole = true;
             }
