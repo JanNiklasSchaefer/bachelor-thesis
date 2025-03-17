@@ -7,16 +7,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import engine.core.MarioGame;
 import engine.core.MarioResult;
 
 public class BenchmarkAgents {
+
+    public static int repititons = 5;
+    public static String csvPrefix = "mctsHd";
 
     public static void printResults(MarioResult result) {
         System.out.println("****************************************************************");
@@ -132,15 +133,16 @@ public class BenchmarkAgents {
             throw new Exception("Wrong File Directory for Benchmarking Levels set");
         }
 
-        String agentName = "mctsHD";
+        String agentName = csvPrefix;
 
         //Repeat benchmarking process multiple times
-        for(int i = 0 ; i < 5; i ++) {
+        for(int i = 0 ; i < repititons; i ++) {
 
             File monteMarioCsv = createCsv(agentName+"_Notch_");
 
 
             for (File path : randomNotchPath) {
+                // Set Agent for benchmarking
                 MarioResult gameResult = game.runGame(new agents.janMonteMario.Agent(), getLevel(path.toString()), 60, 0, false, false);
                 completionPercentages.add(gameResult.getCompletionPercentage());
                 addCsvRow(gameResult, monteMarioCsv, agentName, path.toString().substring(path.toString().lastIndexOf('\\') + 1));
@@ -161,6 +163,7 @@ public class BenchmarkAgents {
             File secondMonteMarioCsv = createCsv(agentName+"_OgOre_");
 
             for (File path : originalBenchmarkPath) {
+                //Set Agent for benchmarking
                 MarioResult gameResult = game.runGame(new agents.janMonteMario.Agent(), getLevel(path.toString()), 60, 0, false, false);
                 completionPercentages.add(gameResult.getCompletionPercentage());
                 addCsvRow(gameResult, secondMonteMarioCsv, agentName, path.toString().substring(path.toString().lastIndexOf('\\') + 1));
