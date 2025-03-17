@@ -109,7 +109,8 @@ then the benchmarking set it was tested on, followed by the date and time the be
 benchmark runs.
 
 In addition, modifying the `runGame` method allows the metrics of the benchmark itself to be changed. It can be modified
-in the same way as for playing a single level with an agent.
+in the same way as for playing a single level with an agent. `runGame` is called at 2 distinct points in the code, modify
+both in the same way to guarantee the same metrics for both level sets.
 
 ---
 
