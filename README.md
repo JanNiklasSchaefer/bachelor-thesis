@@ -10,9 +10,7 @@ Modifications to the engine that are relevant for interacting with the agents wi
 All other changes are explained in the thesis itself, as they do not affect the gameplay itself and were only relevant
 to record certain data.
 
-It only ships with the agents implemented for the bachelor thesis. Each agent was implemented in a way where the
-accompanying techniques can
-be toggled.
+Each agent was implemented in a way where the accompanying techniques can be toggled.
 
 Additional information to this file can be found in the README of the original
 repository: [Mario-Ai-Framework-README.md](Mario-Ai-Framework-README.md). Although not relevant to simply having the
@@ -62,6 +60,18 @@ The RBA agent ships with `Hole Detection` activated.
 To disable go into the [Vertex.java](src/agents/janRBA/Vertex.java) file. At the top of the file there is a boolean
 `holeDetectionActivated`, set it to `false`.
 
+Using RBA while visually inspecting its gameplay, cam sometimes look as it is skipping frames.
+This is due to the fact that RBA sometimes return only after a few milliseconds. The engine can not handle
+that and displays frames for only a short amount of time,
+making it seem as frames were skipped.
+To fix this bug simply go into the [AStarTree.java](src/agents/janRBA/AStarTree.java) file, in the `search` function
+uncomment the following line:
+
+```while(timer.getRemainingTime()>1){};```
+
+It is commented to allow calculating the average time per search, this is not needed when only visually inspecting the
+agent.
+
 ## Monte Mario
 
 The Monte Mario agent is based upon the Monte Mario Paper from 2014. A detailed explanation of the implementation
@@ -109,7 +119,8 @@ then the benchmarking set it was tested on, followed by the date and time the be
 benchmark runs.
 
 In addition, modifying the `runGame` method allows the metrics of the benchmark itself to be changed. It can be modified
-in the same way as for playing a single level with an agent. `runGame` is called at 2 distinct points in the code, modify
+in the same way as for playing a single level with an agent. `runGame` is called at 2 distinct points in the code,
+modify
 both in the same way to guarantee the same metrics for both level sets.
 
 ---
